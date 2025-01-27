@@ -28,3 +28,40 @@ DATA = {
 #     'ингредиент2': количество2,
 #   }
 # }
+
+
+def omlet(request):
+    servings = request.GET.get("servings", 1)
+    context = {'recipe': {}}
+    if servings == 1 or servings is None or not servings.isdecimal():
+        context['recipe'] = DATA['omlet']
+    else:
+        servings = int(servings)
+        for ingredient, count in DATA['omlet'].items():
+            context['recipe'][ingredient] = count * servings
+    return render(request, 'calculator/index.html', context)
+
+
+def pasta(request):
+    servings = request.GET.get("servings", 1)
+    context = {'recipe': {}}
+    if servings == 1 or servings is None or not servings.isdecimal():
+        context['recipe'] = DATA['pasta']
+    else:
+        servings = int(servings)
+        for ingredient, count in DATA['pasta'].items():
+            context['recipe'][ingredient] = count * servings
+    return render(request, 'calculator/index.html', context)
+
+
+def buter(request):
+    servings = request.GET.get("servings", 1)
+    context = {'recipe': {}}
+    if servings == 1 or servings is None or not servings.isdecimal():
+        context['recipe'] = DATA['buter']
+    else:
+        servings = int(servings)
+        for ingredient, count in DATA['buter'].items():
+            context['recipe'][ingredient] = count * servings
+    return render(request, 'calculator/index.html', context)
+    
